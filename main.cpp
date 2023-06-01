@@ -28,7 +28,6 @@ int main() {
 
 
 
-    Vector2 goToLocation = GetMousePosition(); // Gets the mouse XY
     Vector2 boxLocation = {0, 0};
 
 
@@ -37,11 +36,11 @@ int main() {
 
     while (!WindowShouldClose()) { // Variable Update Zone
 
-        boxLocation = checkLocation(goToLocation, boxLocation); // Should update the mouse to be at the location of where the
+        boxLocation = checkLocation(boxLocation, GetMousePosition()); // Should update the mouse to be at the location of where the
         BeginDrawing(); //Start the Drawing
 
             ClearBackground(RAYWHITE);
-            DrawRectangle(boxLocation.x, boxLocation.y, 80, 80, RED); // Creates the box
+            DrawRectangle(boxLocation.x, boxLocation.y, 40, 40, RED); // Creates the box
         EndDrawing();
 
     }
