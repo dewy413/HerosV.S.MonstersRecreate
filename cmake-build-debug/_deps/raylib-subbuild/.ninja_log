@@ -1,0 +1,21 @@
+# ninja log v5
+1	37	7073530016848474	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	41bae21caa9d6058
+1	37	7073530016848474	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-mkdir	41bae21caa9d6058
+37	5750	7073530073986537	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	93ea53fdd076544b
+5750	5783	7073530074303970	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	a4b92bc9ec43f16c
+37	5750	7073530073986537	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-download	93ea53fdd076544b
+5750	5783	7073530074303970	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-update	a4b92bc9ec43f16c
+5783	5815	7073530074631330	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	c33eff52c4814a9a
+5783	5815	7073530074631330	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-patch	c33eff52c4814a9a
+5847	5878	7073530075271170	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	174eee47b804fd1f
+5815	5847	7073530074953730	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	a4b9b6bec75690ec
+5815	5847	7073530074953730	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-configure	a4b9b6bec75690ec
+5847	5878	7073530075271170	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-build	174eee47b804fd1f
+5910	5942	7073530075901091	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	4b91d30a75005a66
+5879	5910	7073530075583647	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	fe2410d13b8c0757
+5879	5910	7073530075583647	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-install	fe2410d13b8c0757
+5910	5942	7073530075901091	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-test	4b91d30a75005a66
+5942	5987	7073530076352455	CMakeFiles/raylib-populate-complete	84bf0584f80491aa
+5942	5987	7073530076352455	raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	84bf0584f80491aa
+5942	5987	7073530076352455	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/CMakeFiles/raylib-populate-complete	84bf0584f80491aa
+5942	5987	7073530076352455	C:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-subbuild/raylib-populate-prefix/src/raylib-populate-stamp/raylib-populate-done	84bf0584f80491aa
