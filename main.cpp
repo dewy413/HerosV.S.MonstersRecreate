@@ -52,6 +52,7 @@ int main() {
 
     Vector2 boxLocation = {0, 0};
     Vector2 goToLocation = {0, 0};
+    int speed = 5;
     bool locationReached = false;
     bool mouseClicked = false;
 
