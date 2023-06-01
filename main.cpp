@@ -18,21 +18,22 @@ bool checkLocation(Vector2 current, Vector2 goTo) {
 
 }
 void updateLocation(Vector2 &current, Vector2 goTo, int speed) {
-    int remainderx = int(goTo.x) % speed;
-    int remaindery = int(goTo.y) % speed;
 
-    if(current.x > goTo.x) {
-        current.x -= speed + remainderx;
+    int remainder = 0;
+    if(current.x > int(goTo.x)) {
+
+        current.x -= speed;
     }
-    if(current.x < goTo.x) {
-        current.x += speed + remainderx;
+    if(current.x < int(goTo.x)) {
+
+        current.x += speed;
     }
-    if(current.y > goTo.y) {
-        current.y -= speed + remaindery;
+    if(current.y > int(goTo.y)) {
+        current.y -= speed;
     }
 
-    if(current.y < goTo.y) {
-        current.y += speed + remaindery;
+    if(current.y < int(goTo.y)) {
+        current.y += speed;
     }
 
 }
@@ -71,7 +72,6 @@ int main() {
         }
 
         BeginDrawing(); //Start the Drawing
-            cout << goToLocation.x << " " << goToLocation.y << endl;
             ClearBackground(RAYWHITE);
             DrawRectangle(boxLocation.x, boxLocation.y, 40, 40, RED); // Creates the box
         EndDrawing();
