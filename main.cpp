@@ -2,6 +2,16 @@
 #include "raylib.h"
 
 using namespace std;
+//1, 2, 3, 4 to select what character you want to use
+//q, w, e, r to select ability you want to use when attacking
+
+
+struct entity {
+
+    Rectangle hitBox;
+    Vector2 boxLocation;
+
+};
 
 
 bool checkLocation(Vector2 current, Vector2 goTo) {
@@ -50,30 +60,46 @@ int main() {
 
 
 
-    Vector2 boxLocation = {0, 0};
+    Vector2 *selectedLocation;
+    entity boxOne;
+    entity boxTwo;
+
+    boxOne.boxLocation = {0, 0};
+    boxOne.hitBox = {boxOne.boxLocation.x, boxOne.boxLocation.y, 50, 50};
+
+    boxTwo.boxLocation = {50, 50};
+    boxTwo.hitBox = {boxTwo.boxLocation.x, boxTwo.boxLocation.y, 50, 50};
+
+    selectedLocation = &boxOne.boxLocation;
     Vector2 goToLocation = {0, 0};
     int speed = 5;
-    bool locationReached = false;
-    bool mouseClicked = false;
 
 
 
 
     while (!WindowShouldClose()) { // Variable Update Zone
 
+        if(IsKeyPressed(KEY_ONE)) {
+            selectedLocation = &boxOne.boxLocation;
+        }
 
+        if(IsKeyPressed(KEY_TWO)) {
+            selectedLocation = &boxTwo.boxLocation;
+
+        }
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             goToLocation = GetMousePosition();
         }
 
-        if(!checkLocation(boxLocation, goToLocation)) {
-            updateLocation(boxLocation, goToLocation, speed);
+        if(!checkLocation(*selectedLocation, goToLocation)) {
+            updateLocation(*selectedLocation, goToLocation, speed);
         }
 
         BeginDrawing(); //Start the Drawing
-            ClearBackground(RAYWHITE);
-            DrawRectangle(boxLocation.x, boxLocation.y, 40, 40, RED); // Creates the box
+        ClearBackground(RAYWHITE);
+            DrawRectangle(boxOne.boxLocation.x, boxOne.boxLocation.y, 40, 40, RED); // Creates the box
+            DrawRectangle(boxTwo.boxLocation.x, boxTwo.boxLocation.y, 40, 40, BLUE);
         EndDrawing();
 
     }
