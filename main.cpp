@@ -2,7 +2,7 @@
 #include "raylib.h"
 
 using namespace std;
-//1, 2, 3, 4 to select what character you want to use
+
 //q, w, e, r to select ability you want to use when attacking
 
 
@@ -13,6 +13,10 @@ struct entity {
     Vector2 goToLocation;
 
 };
+
+
+
+
 
 
 bool checkLocation(Vector2 current, Vector2 goTo) {
