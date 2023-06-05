@@ -10,6 +10,7 @@ struct entity {
 
     Rectangle hitBox;
     Vector2 boxLocation;
+    Vector2 goToLocation;
 
 };
 
@@ -61,6 +62,8 @@ int main() {
 
 
     Vector2 *selectedLocation;
+    Vector2 *goToLocation;
+    Vector2 mouseLocation;
     entity boxOne;
     entity boxTwo;
 
@@ -71,29 +74,37 @@ int main() {
     boxTwo.hitBox = {boxTwo.boxLocation.x, boxTwo.boxLocation.y, 50, 50};
 
     selectedLocation = &boxOne.boxLocation;
-    Vector2 goToLocation = {0, 0};
+    goToLocation = &boxOne.goToLocation;
     int speed = 5;
 
 
 
 
     while (!WindowShouldClose()) { // Variable Update Zone
-
         if(IsKeyPressed(KEY_ONE)) {
+            boxTwo.boxLocation = *selectedLocation;
+            boxTwo.goToLocation = *goToLocation;
             selectedLocation = &boxOne.boxLocation;
+            goToLocation = &boxOne.goToLocation;
+
+
         }
 
         if(IsKeyPressed(KEY_TWO)) {
+            boxOne.boxLocation = *selectedLocation;
+            boxOne.goToLocation = *goToLocation;
             selectedLocation = &boxTwo.boxLocation;
+            goToLocation = &boxTwo.goToLocation;
 
         }
 
         if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-            goToLocation = GetMousePosition();
+            mouseLocation = GetMousePosition();
+            goToLocation = &mouseLocation;
         }
 
-        if(!checkLocation(*selectedLocation, goToLocation)) {
-            updateLocation(*selectedLocation, goToLocation, speed);
+        if(!checkLocation(*selectedLocation, *goToLocation)) {
+            updateLocation(*selectedLocation, *goToLocation, speed);
         }
 
         BeginDrawing(); //Start the Drawing
