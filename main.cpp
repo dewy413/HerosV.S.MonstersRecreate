@@ -72,7 +72,7 @@ int main() {
 
     boxTwo.boxLocation = {50, 50};
     boxTwo.hitBox = {boxTwo.boxLocation.x, boxTwo.boxLocation.y, 50, 50};
-
+    boxTwo.goToLocation = boxTwo.boxLocation;
     selectedLocation = &boxOne.boxLocation;
     goToLocation = &boxOne.goToLocation;
     int speed = 5;
@@ -82,6 +82,7 @@ int main() {
 
     while (!WindowShouldClose()) { // Variable Update Zone
         if(IsKeyPressed(KEY_ONE)) {
+            cout << boxOne.boxLocation.x << " " << boxOne.boxLocation.y << endl;
             boxTwo.boxLocation = *selectedLocation;
             boxTwo.goToLocation = *goToLocation;
             selectedLocation = &boxOne.boxLocation;
