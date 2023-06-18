@@ -1,6 +1,6 @@
 #include <iostream>
 #include "raylib.h"
-
+#include <vector>
 using namespace std;
 
 //q, w, e, r to select ability you want to use when attacking
@@ -69,11 +69,18 @@ int main() {
     Vector2 *selectedLocation;
     Vector2 *goToLocation;
     Vector2 mouseLocation;
+    vector <entity> entities;
     entity *selected;
     entity boxOne;
     entity boxTwo;
     entity boxThree;
     entity boxFour;
+
+    entities.push_back(boxOne);
+    entities.push_back(boxTwo);
+    entities.push_back(boxThree);
+    entities.push_back(boxFour);
+
 
     boxOne.boxLocation = {0, 0};
     boxOne.hitBox = {boxOne.boxLocation.x, boxOne.boxLocation.y, 50, 50};
@@ -100,7 +107,7 @@ int main() {
 
     while (!WindowShouldClose()) { // Variable Update Zone
 
-        if(IsKeyPressed(KEY_ONE) ) {
+        if (IsKeyPressed(KEY_ONE)) {
 
             selected->boxLocation = *selectedLocation;
             selected->goToLocation = *goToLocation;
@@ -111,7 +118,7 @@ int main() {
 
         }
 
-        if(IsKeyPressed(KEY_TWO)) {
+        if (IsKeyPressed(KEY_TWO)) {
             selected->boxLocation = *selectedLocation;
             selected->goToLocation = *goToLocation;
             selectedLocation = &boxTwo.boxLocation;
@@ -120,7 +127,7 @@ int main() {
 
         }
 
-        if(IsKeyPressed(KEY_THREE) ) {
+        if (IsKeyPressed(KEY_THREE)) {
 
             selected->boxLocation = *selectedLocation;
             selected->goToLocation = *goToLocation;
@@ -131,7 +138,7 @@ int main() {
 
         }
 
-        if(IsKeyPressed(KEY_FOUR)) {
+        if (IsKeyPressed(KEY_FOUR)) {
             selected->boxLocation = *selectedLocation;
             selected->goToLocation = *goToLocation;
             selectedLocation = &boxFour.boxLocation;
@@ -140,14 +147,15 @@ int main() {
 
         }
 
-        if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             mouseLocation = GetMousePosition();
             goToLocation = &mouseLocation;
         }
 
-        if(!checkLocation(*selectedLocation, *goToLocation)) {
+        if (!checkLocation(*selectedLocation, *goToLocation)) {
             updateLocation(*selectedLocation, *goToLocation, speed);
         }
+
 
         BeginDrawing(); //Start the Drawing
         ClearBackground(RAYWHITE);
