@@ -65,11 +65,15 @@ int main() {
 
 
 
+
     Vector2 *selectedLocation;
     Vector2 *goToLocation;
     Vector2 mouseLocation;
+    entity *selected;
     entity boxOne;
     entity boxTwo;
+    entity boxThree;
+    entity boxFour;
 
     boxOne.boxLocation = {0, 0};
     boxOne.hitBox = {boxOne.boxLocation.x, boxOne.boxLocation.y, 50, 50};
@@ -77,29 +81,62 @@ int main() {
     boxTwo.boxLocation = {50, 50};
     boxTwo.hitBox = {boxTwo.boxLocation.x, boxTwo.boxLocation.y, 50, 50};
     boxTwo.goToLocation = boxTwo.boxLocation;
+
+    boxThree.boxLocation = {100, 100};
+    boxThree.hitBox = {boxThree.boxLocation.x, boxThree.boxLocation.y, 50, 50};
+    boxThree.goToLocation = boxThree.boxLocation;
+
+    boxFour.boxLocation = {150, 150};
+    boxFour.hitBox = {boxFour.boxLocation.x, boxFour.boxLocation.y, 50, 50};
+    boxFour.goToLocation = boxFour.boxLocation;
+
     selectedLocation = &boxOne.boxLocation;
     goToLocation = &boxOne.goToLocation;
+    selected = &boxOne;
     int speed = 5;
 
 
 
 
     while (!WindowShouldClose()) { // Variable Update Zone
-        if(IsKeyPressed(KEY_ONE)) {
-            cout << boxOne.boxLocation.x << " " << boxOne.boxLocation.y << endl;
-            boxTwo.boxLocation = *selectedLocation;
-            boxTwo.goToLocation = *goToLocation;
+
+        if(IsKeyPressed(KEY_ONE) ) {
+
+            selected->boxLocation = *selectedLocation;
+            selected->goToLocation = *goToLocation;
             selectedLocation = &boxOne.boxLocation;
             goToLocation = &boxOne.goToLocation;
+            selected = &boxOne;
 
 
         }
 
         if(IsKeyPressed(KEY_TWO)) {
-            boxOne.boxLocation = *selectedLocation;
-            boxOne.goToLocation = *goToLocation;
+            selected->boxLocation = *selectedLocation;
+            selected->goToLocation = *goToLocation;
             selectedLocation = &boxTwo.boxLocation;
             goToLocation = &boxTwo.goToLocation;
+            selected = &boxTwo;
+
+        }
+
+        if(IsKeyPressed(KEY_THREE) ) {
+
+            selected->boxLocation = *selectedLocation;
+            selected->goToLocation = *goToLocation;
+            selectedLocation = &boxThree.boxLocation;
+            goToLocation = &boxThree.goToLocation;
+            selected = &boxThree;
+
+
+        }
+
+        if(IsKeyPressed(KEY_FOUR)) {
+            selected->boxLocation = *selectedLocation;
+            selected->goToLocation = *goToLocation;
+            selectedLocation = &boxFour.boxLocation;
+            goToLocation = &boxFour.goToLocation;
+            selected = &boxFour;
 
         }
 
@@ -116,6 +153,8 @@ int main() {
         ClearBackground(RAYWHITE);
             DrawRectangle(boxOne.boxLocation.x, boxOne.boxLocation.y, 40, 40, RED); // Creates the box
             DrawRectangle(boxTwo.boxLocation.x, boxTwo.boxLocation.y, 40, 40, BLUE);
+            DrawRectangle(boxThree.boxLocation.x, boxThree.boxLocation.y, 40, 40, YELLOW);
+            DrawRectangle(boxFour.boxLocation.x, boxFour.boxLocation.y, 40, 40, GREEN);
         EndDrawing();
 
     }
