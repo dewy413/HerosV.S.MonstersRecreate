@@ -6,52 +6,55 @@ using namespace std;
 //q, w, e, r to select ability you want to use when attacking
 
 
-struct entity {
+class entity {
+public:
+    //Rectangle hitBox;
+    Vector2 boxLocation = {0, 0};
+    Vector2 goToLocation = {0, 0};
+    int speed = 5;
 
-    Rectangle hitBox;
-    Vector2 boxLocation;
-    Vector2 goToLocation;
+
+    void locationCheck() {
+        if(!checkLocation()) {
+            updateLocation();
+        }
+    }
+    bool checkLocation() const {
+
+        if(boxLocation.x != goToLocation.x) {
+            return false;
+        }
+
+        if(boxLocation.y != goToLocation.y) {
+            return false;
+        }
+
+        return true;
+
+    }
+    void updateLocation() {
+
+        if(boxLocation.x > int(goToLocation.x)) {
+            boxLocation.x -= speed;
+        }
+        if(boxLocation.x < int(goToLocation.x)) {
+            boxLocation.x += speed;
+        }
+        if(boxLocation.y > int(goToLocation.y)) {
+            boxLocation.y -= speed;
+        }
+
+        if(boxLocation.y < int(goToLocation.y)) {
+            boxLocation.y += speed;
+        }
+
+    }
+
 
 };
 
 
 
-
-
-
-bool checkLocation(Vector2 current, Vector2 goTo) {
-
-    if(current.x != goTo.x) {
-        return false;
-    }
-
-    if(current.y != goTo.y) {
-        return false;
-    }
-
-    return true;
-
-}
-void updateLocation(Vector2 &current, Vector2 goTo, int speed) {
-
-    int remainder = 0;
-    if(current.x > int(goTo.x)) {
-
-        current.x -= speed;
-    }
-    if(current.x < int(goTo.x)) {
-
-        current.x += speed;
-    }
-    if(current.y > int(goTo.y)) {
-        current.y -= speed;
-    }
-
-    if(current.y < int(goTo.y)) {
-        current.y += speed;
-    }
-
-}
 
 
 int main() {
@@ -83,29 +86,31 @@ int main() {
 
 
     boxOne.boxLocation = {0, 0};
-    boxOne.hitBox = {boxOne.boxLocation.x, boxOne.boxLocation.y, 50, 50};
+    //boxOne.hitBox = {boxOne.boxLocation.x, boxOne.boxLocation.y, 50, 50};
 
     boxTwo.boxLocation = {50, 50};
-    boxTwo.hitBox = {boxTwo.boxLocation.x, boxTwo.boxLocation.y, 50, 50};
+    //boxTwo.hitBox = {boxTwo.boxLocation.x, boxTwo.boxLocation.y, 50, 50};
     boxTwo.goToLocation = boxTwo.boxLocation;
 
     boxThree.boxLocation = {100, 100};
-    boxThree.hitBox = {boxThree.boxLocation.x, boxThree.boxLocation.y, 50, 50};
+    //boxThree.hitBox = {boxThree.boxLocation.x, boxThree.boxLocation.y, 50, 50};
     boxThree.goToLocation = boxThree.boxLocation;
 
     boxFour.boxLocation = {150, 150};
-    boxFour.hitBox = {boxFour.boxLocation.x, boxFour.boxLocation.y, 50, 50};
+    //boxFour.hitBox = {boxFour.boxLocation.x, boxFour.boxLocation.y, 50, 50};
     boxFour.goToLocation = boxFour.boxLocation;
 
     selectedLocation = &boxOne.boxLocation;
     goToLocation = &boxOne.goToLocation;
     selected = &boxOne;
-    int speed = 5;
-
 
 
 
     while (!WindowShouldClose()) { // Variable Update Zone
+
+
+        selected->goToLocation = *goToLocation;
+
 
         if (IsKeyPressed(KEY_ONE)) {
 
@@ -152,13 +157,14 @@ int main() {
             goToLocation = &mouseLocation;
         }
 
-        if (!checkLocation(*selectedLocation, *goToLocation)) {
-            updateLocation(*selectedLocation, *goToLocation, speed);
-        }
+        boxOne.locationCheck();
+        boxTwo.locationCheck();
+        boxThree.locationCheck();
+        boxFour.locationCheck();
 
 
         BeginDrawing(); //Start the Drawing
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
             DrawRectangle(boxOne.boxLocation.x, boxOne.boxLocation.y, 40, 40, RED); // Creates the box
             DrawRectangle(boxTwo.boxLocation.x, boxTwo.boxLocation.y, 40, 40, BLUE);
             DrawRectangle(boxThree.boxLocation.x, boxThree.boxLocation.y, 40, 40, YELLOW);
