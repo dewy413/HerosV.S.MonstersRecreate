@@ -17,6 +17,7 @@ public:
     int health = 100;
 
     explicit Entity(Vector2 location);
+    
     Entity();
     void locationCheck();
     bool checkLocation() const;

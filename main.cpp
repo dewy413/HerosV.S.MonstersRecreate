@@ -33,7 +33,7 @@ int main() {
     Vector2 *goToLocation;
     Vector2 mouseLocation;
     Rectangle mouseColl = {NULL, NULL, 25, 25};
-    vector <Entity> entities;
+    vector <Entity *> entities;
     Entity *selected;
     Entity boxOne({0, 0});
     Entity boxTwo({0, 50});
@@ -46,11 +46,11 @@ int main() {
     boxThree.name = "3";
     boxFour.name = "4";
     badGuy.name = "BAD";
-    entities.push_back(boxOne);
-    entities.push_back(boxTwo);
-    entities.push_back(boxThree);
-    entities.push_back(boxFour);
-    entities.push_back(badGuy);
+    entities.push_back(&boxOne);
+    entities.push_back(&boxTwo);
+    entities.push_back(&boxThree);
+    entities.push_back(&boxFour);
+    entities.push_back(&badGuy);
 
 
 
@@ -107,12 +107,11 @@ int main() {
         }
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-            // change from enchmnced to normal then erase
             for(auto & entitie : entities) {
-                if(CheckCollisionRecs(mouseColl, entitie.hitBox)) {
-                    cout << selected->name << " is going to " << entitie.name << "." << "*this did see it*" << endl;
-                    goToLocation->x = entitie.hitBox.x - 75;
-                    goToLocation->y = entitie.hitBox.y;
+                if(CheckCollisionRecs(mouseColl, entitie->hitBox)) {
+                    cout << selected->name << " is going to " << entitie->name << "." << "*this did see it*" << endl;
+                    goToLocation->x = entitie->hitBox.x - 75;
+                    goToLocation->y = entitie->hitBox.y;
                     selected->goToLocation = *goToLocation;
                     break;
                 } else {
