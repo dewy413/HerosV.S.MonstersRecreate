@@ -77,3 +77,6 @@ void Entity::drawSelf(Color color) const {
     DrawRectangle(hitBox.x, hitBox.y - 12, health / 2, 8, RED);
     DrawRectangleLines(hitBox.x, hitBox.y - 12, 50, 8, BLACK);
 }
+
+Entity::Entity() {
+}

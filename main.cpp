@@ -4,9 +4,17 @@
 #include "Objects/Entity.h"
 using namespace std;
 
-//q, w, e, r to select ability you want to use when attacking
+class World {
+public:
+    Vector2 *selectedLocation;
+    Vector2 *goToLocation;
+    Vector2 mouseLocation;
+    vector <Entity> entities;
+    Entity *selected;
 
 
+
+};
 
 
 
@@ -25,6 +33,8 @@ int main() {
     Vector2 *goToLocation;
     Vector2 mouseLocation;
     vector <Entity> entities;
+    World testWorld;
+    Entity party[4];
     Entity *selected;
     Entity boxOne({0, 0});
     Entity boxTwo({0, 50});
@@ -49,7 +59,6 @@ int main() {
 
 
         selected->goToLocation = *goToLocation;
-
 
         if (IsKeyPressed(KEY_ONE)) {
 
