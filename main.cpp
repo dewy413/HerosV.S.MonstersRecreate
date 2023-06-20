@@ -1,90 +1,10 @@
 #include <iostream>
 #include "raylib.h"
 #include <vector>
+#include "Objects/Entity.h"
 using namespace std;
 
 //q, w, e, r to select ability you want to use when attacking
-
-
-class entity {
-public:
-    string name;
-    Vector2 boxLocation;
-    Vector2 goToLocation;
-    Rectangle hitBox;
-    int speed = 5;
-
-    explicit entity(Vector2 location) {
-        boxLocation = location;
-        goToLocation = boxLocation;
-        hitBox.x = location.x;
-        hitBox.y = location.y;
-        hitBox.height = 50;
-        hitBox.width = 50;
-    }
-    void locationCheck() {
-        hitBox.x = boxLocation.x;
-        hitBox.y = boxLocation.y;
-        if(!checkLocation()) {
-            updateLocation();
-        }
-    }
-    bool checkLocation() const {
-
-        if(boxLocation.x != goToLocation.x) {
-            return false;
-        }
-
-        if(boxLocation.y != goToLocation.y) {
-            return false;
-        }
-
-        return true;
-
-    }
-    void updateLocation() {
-
-
-
-        if(boxLocation.x > int(goToLocation.x)) {
-            if(abs(boxLocation.x - goToLocation.x) > speed) {
-                boxLocation.x -= speed;
-            } else {
-                boxLocation.x -= abs(boxLocation.x - goToLocation.x);
-            }
-        }
-        if(boxLocation.x < int(goToLocation.x)) {
-            if(abs(boxLocation.x - goToLocation.x) > speed) {
-                boxLocation.x += speed;
-            } else {
-                boxLocation.x += abs(boxLocation.x - goToLocation.x);
-            }
-        }
-        if(boxLocation.y > int(goToLocation.y)) {
-            if(abs(boxLocation.y - goToLocation.y) > speed) {
-                boxLocation.y -= speed;
-            } else {
-                boxLocation.y -= abs(boxLocation.y - goToLocation.y);
-            }
-
-        }
-
-        if(boxLocation.y < int(goToLocation.y)) {
-            if(abs(boxLocation.y - goToLocation.y) > speed) {
-                boxLocation.y += speed;
-            } else {
-                boxLocation.y += abs(boxLocation.y - goToLocation.y);
-            }
-
-        }
-
-
-    }
-    void drawSelf(Color color) const {
-        DrawRectangleRec(hitBox, color);
-    }
-
-};
 
 
 
@@ -104,12 +24,12 @@ int main() {
     Vector2 *selectedLocation;
     Vector2 *goToLocation;
     Vector2 mouseLocation;
-    vector <entity> entities;
-    entity *selected;
-    entity boxOne({0, 0});
-    entity boxTwo({50, 50});
-    entity boxThree({100, 100});
-    entity boxFour({150, 150});
+    vector <Entity> entities;
+    Entity *selected;
+    Entity boxOne({0, 0});
+    Entity boxTwo({0, 50});
+    Entity boxThree({0, 100});
+    Entity boxFour({0, 150});
 
 
     entities.push_back(boxOne);
@@ -183,11 +103,10 @@ int main() {
         boxThree.locationCheck();
         boxFour.locationCheck();
 
-
         BeginDrawing(); //Start the Drawing
-        ClearBackground(BLACK);
-            boxOne.drawSelf(RED);
-            boxTwo.drawSelf(BLUE);
+        ClearBackground(WHITE);
+            boxOne.drawSelf(BLUE);
+            boxTwo.drawSelf(RED);
             boxThree.drawSelf(GREEN);
             boxFour.drawSelf(PURPLE);
         EndDrawing();

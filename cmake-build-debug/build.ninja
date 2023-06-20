@@ -57,6 +57,14 @@ build CMakeFiles/HerosV.S.MonstersRecreate.dir/main.cpp.obj: CXX_COMPILER__Heros
   OBJECT_DIR = CMakeFiles\HerosV.S.MonstersRecreate.dir
   OBJECT_FILE_DIR = CMakeFiles\HerosV.S.MonstersRecreate.dir
 
+build CMakeFiles/HerosV.S.MonstersRecreate.dir/Objects/Entity.cpp.obj: CXX_COMPILER__HerosV.2eS.2eMonstersRecreate_Debug C$:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/Objects/Entity.cpp || cmake_object_order_depends_target_HerosV.S.MonstersRecreate
+  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
+  DEP_FILE = CMakeFiles\HerosV.S.MonstersRecreate.dir\Objects\Entity.cpp.obj.d
+  FLAGS = -g
+  INCLUDES = -IC:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-src/src -IC:/Users/14794/Documents/Programming/C++/HerosV.S.MonstersRecreate/cmake-build-debug/_deps/raylib-src/src/external/glfw/include
+  OBJECT_DIR = CMakeFiles\HerosV.S.MonstersRecreate.dir
+  OBJECT_FILE_DIR = CMakeFiles\HerosV.S.MonstersRecreate.dir\Objects
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target HerosV.S.MonstersRecreate
@@ -65,7 +73,7 @@ build CMakeFiles/HerosV.S.MonstersRecreate.dir/main.cpp.obj: CXX_COMPILER__Heros
 #############################################
 # Link the executable HerosV.S.MonstersRecreate.exe
 
-build HerosV.S.MonstersRecreate.exe: CXX_EXECUTABLE_LINKER__HerosV.2eS.2eMonstersRecreate_Debug CMakeFiles/HerosV.S.MonstersRecreate.dir/main.cpp.obj | _deps/raylib-build/raylib/libraylib.a _deps/raylib-build/raylib/external/glfw/src/libglfw3.a || _deps/raylib-build/raylib/external/glfw/src/libglfw3.a _deps/raylib-build/raylib/libraylib.a
+build HerosV.S.MonstersRecreate.exe: CXX_EXECUTABLE_LINKER__HerosV.2eS.2eMonstersRecreate_Debug CMakeFiles/HerosV.S.MonstersRecreate.dir/main.cpp.obj CMakeFiles/HerosV.S.MonstersRecreate.dir/Objects/Entity.cpp.obj | _deps/raylib-build/raylib/libraylib.a _deps/raylib-build/raylib/external/glfw/src/libglfw3.a || _deps/raylib-build/raylib/external/glfw/src/libglfw3.a _deps/raylib-build/raylib/libraylib.a
   FLAGS = -g
   LINK_LIBRARIES = _deps/raylib-build/raylib/libraylib.a  -lopengl32  -lglu32  -lwinmm  _deps/raylib-build/raylib/external/glfw/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\HerosV.S.MonstersRecreate.dir

@@ -3,20 +3,24 @@
 
 #include <iostream>
 #include "raylib.h"
+#include <vector>
 
+using namespace std;
 
 class Entity {
 public:
-    Entity(int a, int d, int h, int s, Vector2 box);
-    int attack;
-    int defense;
-    int health;
-    int speed;
-    Rectangle hitbox;
+    string name;
     Vector2 boxLocation;
     Vector2 goToLocation;
+    Rectangle hitBox;
+    int speed = 5;
+    int health = 100;
+
+    explicit Entity(Vector2 location);
+    void locationCheck();
+    bool checkLocation() const;
     void updateLocation();
-    bool checkLocation();
+    void drawSelf(Color color) const;
 };
 
 #endif //HEROSV_S_MONSTERSRECREATE_ENTITY_H
