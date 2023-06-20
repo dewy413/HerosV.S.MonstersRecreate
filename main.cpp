@@ -109,9 +109,8 @@ int main() {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             for(auto & entitie : entities) {
                 if(CheckCollisionRecs(mouseColl, entitie->hitBox)) {
-                    cout << selected->name << " is going to " << entitie->name << "." << "*this did see it*" << endl;
-                    goToLocation->x = entitie->hitBox.x - 75;
-                    goToLocation->y = entitie->hitBox.y;
+                    goToLocation->x = entitie->goToLocation.x - 75;
+                    goToLocation->y = entitie->goToLocation.y;
                     selected->goToLocation = *goToLocation;
                     break;
                 } else {
@@ -120,7 +119,6 @@ int main() {
                     mouseLocation.y -= selected->hitBox.height / 2;
                     goToLocation = &mouseLocation;
                 }
-                cout << endl;
             }
         }
 

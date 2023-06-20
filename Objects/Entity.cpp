@@ -6,9 +6,14 @@
 using namespace std;
 
 
+Entity::Entity() {
+
+}
+
 Entity::Entity(Vector2 location) {
     boxLocation = location;
     goToLocation = boxLocation;
+
     hitBox.x = location.x;
     hitBox.y = location.y;
     hitBox.height = 50;
@@ -85,5 +90,9 @@ void Entity::drawSelf(Color color) const {
     DrawRectangleLines(hitBox.x, hitBox.y - 12, 50, 8, BLACK);
 }
 
-Entity::Entity() {
+
+
+void Entity::updateLocationAttack() {
+
+
 }
