@@ -111,8 +111,8 @@ int main() {
             for(auto & entitie : entities) {
                 if(CheckCollisionRecs(mouseColl, entitie.hitBox)) {
                     cout << selected->name << " is going to " << entitie.name << "." << "*this did see it*" << endl;
-                    goToLocation->x = entitie.boxLocation.x - 75;
-                    goToLocation->y = entitie.boxLocation.y;
+                    goToLocation->x = entitie.hitBox.x - 75;
+                    goToLocation->y = entitie.hitBox.y;
                     selected->goToLocation = *goToLocation;
                     break;
                 } else {
@@ -138,7 +138,7 @@ int main() {
             boxThree.drawSelf(GREEN);
             boxFour.drawSelf(PURPLE);
             badGuy.drawSelf(RED);
-            //DrawRectangleRec(mouseColl, PINK);
+            DrawRectangleRec(mouseColl, PINK);
 
         EndDrawing();
 

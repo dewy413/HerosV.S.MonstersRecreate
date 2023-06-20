@@ -16,6 +16,8 @@ Entity::Entity(Vector2 location) {
 }
 
 void Entity::locationCheck() {
+    hitBox.x = boxLocation.x;
+    hitBox.y = boxLocation.y;
     if(!checkLocation()) {
         updateLocation();
     }
