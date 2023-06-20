@@ -44,19 +44,40 @@ public:
     }
     void updateLocation() {
 
+
+
         if(boxLocation.x > int(goToLocation.x)) {
-            boxLocation.x -= speed;
+            if(abs(boxLocation.x - goToLocation.x) > speed) {
+                boxLocation.x -= speed;
+            } else {
+                boxLocation.x -= abs(boxLocation.x - goToLocation.x);
+            }
         }
-        if(boxLocation.x< int(goToLocation.x)) {
-            boxLocation.x += speed;
+        if(boxLocation.x < int(goToLocation.x)) {
+            if(abs(boxLocation.x - goToLocation.x) > speed) {
+                boxLocation.x += speed;
+            } else {
+                boxLocation.x += abs(boxLocation.x - goToLocation.x);
+            }
         }
         if(boxLocation.y > int(goToLocation.y)) {
-            boxLocation.y -= speed;
+            if(abs(boxLocation.y - goToLocation.y) > speed) {
+                boxLocation.y -= speed;
+            } else {
+                boxLocation.y -= abs(boxLocation.y - goToLocation.y);
+            }
+
         }
 
         if(boxLocation.y < int(goToLocation.y)) {
-            boxLocation.y += speed;
+            if(abs(boxLocation.y - goToLocation.y) > speed) {
+                boxLocation.y += speed;
+            } else {
+                boxLocation.y += abs(boxLocation.y - goToLocation.y);
+            }
+
         }
+
 
     }
     void drawSelf(Color color) const {
@@ -89,6 +110,7 @@ int main() {
     entity boxTwo({50, 50});
     entity boxThree({100, 100});
     entity boxFour({150, 150});
+
 
     entities.push_back(boxOne);
     entities.push_back(boxTwo);
@@ -151,6 +173,8 @@ int main() {
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             mouseLocation = GetMousePosition();
+            mouseLocation.x -= selected->hitBox.width / 2;
+            mouseLocation.y -= selected->hitBox.height / 2;
             goToLocation = &mouseLocation;
         }
 
