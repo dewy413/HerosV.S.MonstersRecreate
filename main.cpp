@@ -32,20 +32,21 @@ int main() {
     Vector2 *selectedLocation;
     Vector2 *goToLocation;
     Vector2 mouseLocation;
+    Rectangle mouseColl = {NULL, NULL, 25, 25};
     vector <Entity> entities;
-    World testWorld;
-    Entity party[4];
     Entity *selected;
     Entity boxOne({0, 0});
     Entity boxTwo({0, 50});
     Entity boxThree({0, 100});
     Entity boxFour({0, 150});
+    Entity badGuy ({500, 250});
 
 
     entities.push_back(boxOne);
     entities.push_back(boxTwo);
     entities.push_back(boxThree);
     entities.push_back(boxFour);
+    entities.push_back(badGuy);
 
 
 
@@ -59,7 +60,8 @@ int main() {
 
 
         selected->goToLocation = *goToLocation;
-
+        mouseColl.x = GetMouseX() - 12;
+        mouseColl.y = GetMouseY() - 12;
         if (IsKeyPressed(KEY_ONE)) {
 
             selected->boxLocation = *selectedLocation;
@@ -101,23 +103,37 @@ int main() {
         }
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-            mouseLocation = GetMousePosition();
-            mouseLocation.x -= selected->hitBox.width / 2;
-            mouseLocation.y -= selected->hitBox.height / 2;
-            goToLocation = &mouseLocation;
+
+
+            for(auto & entitie : entities) {
+                if(CheckCollisionRecs(mouseColl, entitie.hitBox)) {
+                    goToLocation->x = entitie.boxLocation.x - 75;
+                    goToLocation->y = entitie.boxLocation.y;
+                    selected->goToLocation = *goToLocation;
+                } else {
+                    mouseLocation = GetMousePosition();
+                    mouseLocation.x -= selected->hitBox.width / 2;
+                    mouseLocation.y -= selected->hitBox.height / 2;
+                    goToLocation = &mouseLocation;
+                }
+            }
         }
 
         boxOne.locationCheck();
         boxTwo.locationCheck();
         boxThree.locationCheck();
         boxFour.locationCheck();
+        badGuy.locationCheck();
 
         BeginDrawing(); //Start the Drawing
         ClearBackground(WHITE);
             boxOne.drawSelf(BLUE);
-            boxTwo.drawSelf(RED);
+            boxTwo.drawSelf(BLACK);
             boxThree.drawSelf(GREEN);
             boxFour.drawSelf(PURPLE);
+            badGuy.drawSelf(RED);
+            //DrawRectangleRec(mouseColl, PINK);
+
         EndDrawing();
 
     }
