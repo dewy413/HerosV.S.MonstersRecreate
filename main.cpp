@@ -41,7 +41,11 @@ int main() {
     Entity boxFour({0, 150});
     Entity badGuy ({500, 250});
 
-
+    boxOne.name = "1";
+    boxTwo.name = "2";
+    boxThree.name = "3";
+    boxFour.name = "4";
+    badGuy.name = "BAD";
     entities.push_back(boxOne);
     entities.push_back(boxTwo);
     entities.push_back(boxThree);
@@ -103,19 +107,21 @@ int main() {
         }
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-
-
+            // change from enchmnced to normal then erase
             for(auto & entitie : entities) {
                 if(CheckCollisionRecs(mouseColl, entitie.hitBox)) {
+                    cout << selected->name << " is going to " << entitie.name << "." << "*this did see it*" << endl;
                     goToLocation->x = entitie.boxLocation.x - 75;
                     goToLocation->y = entitie.boxLocation.y;
                     selected->goToLocation = *goToLocation;
+                    break;
                 } else {
                     mouseLocation = GetMousePosition();
                     mouseLocation.x -= selected->hitBox.width / 2;
                     mouseLocation.y -= selected->hitBox.height / 2;
                     goToLocation = &mouseLocation;
                 }
+                cout << endl;
             }
         }
 

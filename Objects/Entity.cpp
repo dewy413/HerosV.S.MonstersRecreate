@@ -16,8 +16,6 @@ Entity::Entity(Vector2 location) {
 }
 
 void Entity::locationCheck() {
-    hitBox.x = boxLocation.x;
-    hitBox.y = boxLocation.y;
     if(!checkLocation()) {
         updateLocation();
     }
@@ -42,20 +40,25 @@ void Entity::updateLocation() {
             boxLocation.x -= speed;
         } else {
             boxLocation.x -= abs(boxLocation.x - goToLocation.x);
+
         }
     }
     if(boxLocation.x < int(goToLocation.x)) {
         if(abs(boxLocation.x - goToLocation.x) > speed) {
             boxLocation.x += speed;
+
         } else {
             boxLocation.x += abs(boxLocation.x - goToLocation.x);
+
         }
     }
     if(boxLocation.y > int(goToLocation.y)) {
         if(abs(boxLocation.y - goToLocation.y) > speed) {
             boxLocation.y -= speed;
+
         } else {
             boxLocation.y -= abs(boxLocation.y - goToLocation.y);
+
         }
 
     }
@@ -63,8 +66,10 @@ void Entity::updateLocation() {
     if(boxLocation.y < int(goToLocation.y)) {
         if(abs(boxLocation.y - goToLocation.y) > speed) {
             boxLocation.y += speed;
+
         } else {
             boxLocation.y += abs(boxLocation.y - goToLocation.y);
+
         }
 
     }
