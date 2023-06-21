@@ -32,7 +32,7 @@ int main() {
     Vector2 *selectedLocation;
     Vector2 *goToLocation;
     Vector2 mouseLocation;
-    Rectangle mouseColl = {NULL, NULL, 25, 25};
+    Rectangle mouseColl = {NULL, NULL, 5, 5};
     vector <Entity *> entities;
     Entity *selected;
     Entity boxOne({0, 0});
@@ -108,6 +108,9 @@ int main() {
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             for(auto & entitie : entities) {
+                if(CheckCollisionCircleRec({selected->hitBox.x + 25, selected->hitBox.y + 25}, selected->range, entitie->hitBox)) {
+                    cout << selected->name << " can attack " << entitie->name << "." << endl;
+                }
                 if(CheckCollisionRecs(mouseColl, entitie->hitBox)) {
                     selected->target = entitie;
                     break;
@@ -118,7 +121,7 @@ int main() {
                     goToLocation = &mouseLocation;
                     selected->target = nullptr;
                 }
-            }
+            } cout << endl;
         }
 
         boxOne.locationCheck();
@@ -128,7 +131,7 @@ int main() {
         badGuy.locationCheck();
 
         BeginDrawing(); //Start the Drawing
-        ClearBackground(WHITE);
+        ClearBackground(BLACK);
             boxOne.drawSelf(BLUE);
             boxTwo.drawSelf(BLACK);
             boxThree.drawSelf(GREEN);

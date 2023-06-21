@@ -52,12 +52,16 @@ void Entity::updateLocation() {
 
 
     if(target != nullptr) {
+        defaultAttack();
         if(boxLocation.x > target->hitBox.x) {
-            goToLocation.x = target->hitBox.x + 75;
-            goToLocation.y = target->hitBox.y;
+            goToLocation.x = target->hitBox.x + 75 + range;
         } else {
-            goToLocation.x = target->hitBox.x - 75;
-            goToLocation.y = target->hitBox.y;
+            goToLocation.x = target->hitBox.x - 75 - range;
+        }
+        if(boxLocation.y > target->hitBox.y) {
+            goToLocation.y = target->hitBox.y + range;
+        } else {
+            goToLocation.y = target->hitBox.y - range;
 
         }
     }
@@ -108,6 +112,11 @@ void Entity::drawSelf(Color color) const {
     DrawRectangleRec(hitBox, color);
     DrawRectangle(hitBox.x, hitBox.y - 12, health / 2, 8, RED);
     DrawRectangleLines(hitBox.x, hitBox.y - 12, 50, 8, BLACK);
+    DrawCircleLines(hitBox.x + 25 , hitBox.y + 25, range, YELLOW); // range
+}
+
+void Entity::defaultAttack() {
+    CheckCollisionCircleRec({hitBox.x + 25 , hitBox.y + 25}, range, target->hitBox);
 }
 
 
