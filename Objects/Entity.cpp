@@ -49,9 +49,17 @@ bool Entity::checkLocation() {
 void Entity::updateLocation() {
 
 
+
+
     if(target != nullptr) {
-        goToLocation.x = target->hitBox.x - 75;
-        goToLocation.y = target->hitBox.y;
+        if(boxLocation.x > target->hitBox.x) {
+            goToLocation.x = target->hitBox.x + 75;
+            goToLocation.y = target->hitBox.y;
+        } else {
+            goToLocation.x = target->hitBox.x - 75;
+            goToLocation.y = target->hitBox.y;
+
+        }
     }
 
     if(boxLocation.x > int(goToLocation.x)) {

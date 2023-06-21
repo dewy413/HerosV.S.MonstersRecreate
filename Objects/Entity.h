@@ -15,6 +15,8 @@ public:
     Rectangle hitBox;
     int speed = 5;
     int health = 100;
+    int attack = 5;
+    int range = 50;
     Entity *target = nullptr;
 
     explicit Entity(Vector2 location);
