@@ -109,15 +109,14 @@ int main() {
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             for(auto & entitie : entities) {
                 if(CheckCollisionRecs(mouseColl, entitie->hitBox)) {
-                    goToLocation->x = entitie->goToLocation.x - 75;
-                    goToLocation->y = entitie->goToLocation.y;
-                    selected->goToLocation = *goToLocation;
+                    selected->target = entitie;
                     break;
                 } else {
                     mouseLocation = GetMousePosition();
                     mouseLocation.x -= selected->hitBox.width / 2;
                     mouseLocation.y -= selected->hitBox.height / 2;
                     goToLocation = &mouseLocation;
+                    selected->target = nullptr;
                 }
             }
         }

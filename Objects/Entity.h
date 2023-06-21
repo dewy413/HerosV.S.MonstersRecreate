@@ -12,18 +12,17 @@ public:
     string name;
     Vector2 boxLocation;
     Vector2 goToLocation;
-    Vector2 *attackLocation;
     Rectangle hitBox;
     int speed = 5;
     int health = 100;
+    Entity *target = nullptr;
 
     explicit Entity(Vector2 location);
 
     Entity();
     void locationCheck();
-    [[nodiscard]] bool checkLocation() const;
+    [[nodiscard]] bool checkLocation();
     void updateLocation();
-    void updateLocationAttack();
     void drawSelf(Color color) const;
 };
 

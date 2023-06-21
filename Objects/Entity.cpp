@@ -13,7 +13,6 @@ Entity::Entity() {
 Entity::Entity(Vector2 location) {
     boxLocation = location;
     goToLocation = boxLocation;
-
     hitBox.x = location.x;
     hitBox.y = location.y;
     hitBox.height = 50;
@@ -28,7 +27,13 @@ void Entity::locationCheck() {
     }
 }
 
-bool Entity::checkLocation() const {
+bool Entity::checkLocation() {
+
+    if(target != nullptr) {
+        goToLocation.x = target->hitBox.x;
+        goToLocation.y = target->hitBox.y;
+    }
+
     if(boxLocation.x != goToLocation.x) {
         return false;
     }
@@ -42,6 +47,13 @@ bool Entity::checkLocation() const {
 }
 
 void Entity::updateLocation() {
+
+
+    if(target != nullptr) {
+        goToLocation.x = target->hitBox.x - 75;
+        goToLocation.y = target->hitBox.y;
+    }
+
     if(boxLocation.x > int(goToLocation.x)) {
         if(abs(boxLocation.x - goToLocation.x) > speed) {
             boxLocation.x -= speed;
@@ -92,7 +104,4 @@ void Entity::drawSelf(Color color) const {
 
 
 
-void Entity::updateLocationAttack() {
 
-
-}
