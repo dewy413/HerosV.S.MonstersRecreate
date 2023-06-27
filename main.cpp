@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include <vector>
 #include "Objects/Entity.h"
+#include "Objects/World.h"
 using namespace std;
 
 
@@ -19,8 +20,10 @@ int main() {
 
 
 
+    World World;
 
-    Vector2 *selectedLocation;
+
+   /* Vector2 *selectedLocation;
     Vector2 *goToLocation;
     Vector2 mouseLocation;
     Rectangle mouseColl = {NULL, NULL, 5, 5};
@@ -48,71 +51,67 @@ int main() {
     selectedLocation = &boxOne.boxLocation;
     goToLocation = &boxOne.goToLocation;
     selected = &boxOne;
-
-
+*/
 
     while (!WindowShouldClose()) { // Variable Update Zone
 
 
-        selected->goToLocation = *goToLocation;
-        mouseColl.x = GetMouseX() - 1.5;
-        mouseColl.y = GetMouseY() - 1;
+        World.selected->goToLocation = *World.goToLocation;
+        World.mouseColl.x = GetMouseX() - 1.5;
+        World.mouseColl.y = GetMouseY() - 1;
         if (IsKeyPressed(KEY_ONE)) {
 
-            selected->boxLocation = *selectedLocation;
-            selected->goToLocation = *goToLocation;
-            selectedLocation = &boxOne.boxLocation;
-            goToLocation = &boxOne.goToLocation;
-            selected = &boxOne;
+            World.selected->boxLocation = *World.selectedLocation;
+            World.selected->goToLocation = *World.goToLocation;
+            World.selectedLocation = &World.entities[0]->boxLocation;
+            World.goToLocation = &World.entities[0]->goToLocation;
+            World.selected = World.entities[0];
 
 
         }
 
         if (IsKeyPressed(KEY_TWO)) {
-            selected->boxLocation = *selectedLocation;
-            selected->goToLocation = *goToLocation;
-            selectedLocation = &boxTwo.boxLocation;
-            goToLocation = &boxTwo.goToLocation;
-            selected = &boxTwo;
+            World.selected->boxLocation = *World.selectedLocation;
+            World.selected->goToLocation = *World.goToLocation;
+            World.selectedLocation = &World.entities[1]->boxLocation;
+            World.goToLocation = &World.entities[1]->goToLocation;
+            World.selected = World.entities[1];
 
         }
 
         if (IsKeyPressed(KEY_THREE)) {
-
-            selected->boxLocation = *selectedLocation;
-            selected->goToLocation = *goToLocation;
-            selectedLocation = &boxThree.boxLocation;
-            goToLocation = &boxThree.goToLocation;
-            selected = &boxThree;
-
-
+            World.selected->boxLocation = *World.selectedLocation;
+            World.selected->goToLocation = *World.goToLocation;
+            World.selectedLocation = &World.entities[2]->boxLocation;
+            World.goToLocation = &World.entities[2]->goToLocation;
+            World.selected = World.entities[2];
         }
 
         if (IsKeyPressed(KEY_FOUR)) {
-            selected->boxLocation = *selectedLocation;
-            selected->goToLocation = *goToLocation;
-            selectedLocation = &boxFour.boxLocation;
-            goToLocation = &boxFour.goToLocation;
-            selected = &boxFour;
+            World.selected->boxLocation = *World.selectedLocation;
+            World.selected->goToLocation = *World.goToLocation;
+            World.selectedLocation = &World.entities[3]->boxLocation;
+            World.goToLocation = &World.entities[3]->goToLocation;
+            World.selected = World.entities[3];
 
         }
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-                mouseLocation = GetMousePosition();
-                mouseLocation.x -= selected->hitBox.width / 2;
-                mouseLocation.y -= selected->hitBox.height / 2;
-                goToLocation = &mouseLocation;
-                selected->target = nullptr;
+                World.mouseLocation = GetMousePosition();
+                World.mouseLocation.x -= World.selected->hitBox.width / 2;
+                World.mouseLocation.y -= World.selected->hitBox.height / 2;
+                World.goToLocation = &World.mouseLocation;
+                World.selected->target = nullptr;
             }
 
 
         /// ENTITY LOOP
-        for(auto & entitie : entities) {
+        for(auto & entitie : World.entities) {
             entitie->attackable.clear();
             entitie->locationCheck();
-            if (CheckCollisionCircleRec({selected->hitBox.x + 25, selected->hitBox.y + 25}, selected->range,
+            if (CheckCollisionCircleRec({World.selected->hitBox.x + 25, World.selected->hitBox.y + 25}, World.selected->range,
                                         entitie->hitBox)) {
-                selected->attackable.push_back(entitie);
+                World.selected->attackable.push_back(entitie);
             }
         }
         /// ENTITY CHECK LOOP
@@ -121,12 +120,10 @@ int main() {
         BeginDrawing(); //Start the Drawing
         ClearBackground(BLACK);
         // Add loop for drawing
-            boxOne.drawSelf(BLUE);
-            boxTwo.drawSelf(BLACK);
-            boxThree.drawSelf(GREEN);
-            boxFour.drawSelf(PURPLE);
-            badGuy.drawSelf(RED);
-            DrawRectangleRec(mouseColl, PINK);
+            for(auto & entitie : World.entities) {
+                entitie->drawSelf(RED);
+            }
+            DrawRectangleRec(World.mouseColl, PINK);
 
         EndDrawing();
 

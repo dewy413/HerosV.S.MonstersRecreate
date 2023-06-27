@@ -22,6 +22,6 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
     endif()
 endif()
 
-add_executable(${PROJECT_NAME} main.cpp Objects/Entity.cpp Objects/Entity.h)
+add_executable(${PROJECT_NAME} main.cpp Objects/Entity.cpp Objects/Entity.h Objects/World.cpp Objects/World.h)
 target_link_libraries(${PROJECT_NAME} raylib)
 

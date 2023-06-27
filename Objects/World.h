@@ -4,10 +4,10 @@
 #include <iostream>
 #include "raylib.h"
 #include <vector>
-#include "Entity.h"
 
 class World {
 public:
+    World();
     Vector2 *selectedLocation;
     Vector2 *goToLocation;
     Vector2 mouseLocation;
