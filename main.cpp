@@ -20,45 +20,19 @@ int main() {
 
 
 
+    /// GENERATE WORLD
     World World;
+    /// GENERATE WORLD
 
 
-   /* Vector2 *selectedLocation;
-    Vector2 *goToLocation;
-    Vector2 mouseLocation;
-    Rectangle mouseColl = {NULL, NULL, 5, 5};
-    vector <Entity *> entities;
-    Entity *selected;
-    Entity boxOne({0, 0});
-    Entity boxTwo({0, 50});
-    Entity boxThree({0, 100});
-    Entity boxFour({0, 150});
-    Entity badGuy ({500, 250});
+    /// VARIABLE UPDATE ZONE
+    while (!WindowShouldClose()) {
 
-    boxOne.name = "1";
-    boxTwo.name = "2";
-    boxThree.name = "3";
-    boxFour.name = "4";
-    badGuy.name = "BAD";
-    entities.push_back(&boxOne);
-    entities.push_back(&boxTwo);
-    entities.push_back(&boxThree);
-    entities.push_back(&boxFour);
-    entities.push_back(&badGuy);
+        World.selected->goToLocation = *World.goToLocation; // Makes sure that the selected location is up-to-date.
+        World.mouseColl.x = GetMouseX() - 1.5; // Mouse exact click location relative to the generated hotbox square.
+        World.mouseColl.y = GetMouseY() - 1; // ^^^^^
 
-
-
-    selectedLocation = &boxOne.boxLocation;
-    goToLocation = &boxOne.goToLocation;
-    selected = &boxOne;
-*/
-
-    while (!WindowShouldClose()) { // Variable Update Zone
-
-
-        World.selected->goToLocation = *World.goToLocation;
-        World.mouseColl.x = GetMouseX() - 1.5;
-        World.mouseColl.y = GetMouseY() - 1;
+        /// PLAYER INPUT KEY CODE
         if (IsKeyPressed(KEY_ONE)) {
 
             World.selected->boxLocation = *World.selectedLocation;
@@ -96,6 +70,9 @@ int main() {
 
         }
 
+        /// PLAYER INPUT KEY CODE
+
+        /// MOUSE CLICK CODE
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
                 World.mouseLocation = GetMousePosition();
                 World.mouseLocation.x -= World.selected->hitBox.width / 2;
@@ -103,7 +80,7 @@ int main() {
                 World.goToLocation = &World.mouseLocation;
                 World.selected->target = nullptr;
             }
-
+        /// MOUSE CLICK CODE
 
         /// ENTITY LOOP
         for(auto & entitie : World.entities) {
@@ -116,19 +93,21 @@ int main() {
         }
         /// ENTITY CHECK LOOP
 
+        /// VARIABLE UPDATE ZONE
 
-        BeginDrawing(); //Start the Drawing
+
+        /// DRAWING ZONE
+        BeginDrawing();
         ClearBackground(BLACK);
-        // Add loop for drawing
-            for(auto & entitie : World.entities) {
-                entitie->drawSelf(RED);
+            for(auto & entity : World.entities) {
+                entity->drawSelf(RED);
             }
             DrawRectangleRec(World.mouseColl, PINK);
 
         EndDrawing();
 
     }
-
+        /// DRAWING ZONE
 
     return 0;
 }

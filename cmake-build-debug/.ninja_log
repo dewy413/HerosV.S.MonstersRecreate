@@ -29,3 +29,6 @@
 7370	7482	7090631531568281	_deps/raylib-build/raylib/libraylib.a	68e3ee48bd95003b
 4	351	7095928879620747	CMakeFiles/HerosV.S.MonstersRecreate.dir/Objects/World.cpp.obj	47659ee00db669a0
 351	519	7095928881268756	HerosV.S.MonstersRecreate.exe	985aff7a61e73f55
+7	383	7095931687284286	CMakeFiles/HerosV.S.MonstersRecreate.dir/main.cpp.obj	14827de22ea0ffff
+3	386	7095931687314048	CMakeFiles/HerosV.S.MonstersRecreate.dir/Objects/World.cpp.obj	47659ee00db669a0
+386	605	7095931689476608	HerosV.S.MonstersRecreate.exe	985aff7a61e73f55
