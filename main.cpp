@@ -4,18 +4,6 @@
 #include "Objects/Entity.h"
 using namespace std;
 
-class World {
-public:
-    Vector2 *selectedLocation;
-    Vector2 *goToLocation;
-    Vector2 mouseLocation;
-    vector <Entity> entities;
-    Entity *selected;
-
-
-
-};
-
 
 
 int main() {
@@ -64,8 +52,8 @@ int main() {
 
 
         selected->goToLocation = *goToLocation;
-        mouseColl.x = GetMouseX() - 12;
-        mouseColl.y = GetMouseY() - 12;
+        mouseColl.x = GetMouseX() - 1.5;
+        mouseColl.y = GetMouseY() - 1;
         if (IsKeyPressed(KEY_ONE)) {
 
             selected->boxLocation = *selectedLocation;
@@ -107,25 +95,12 @@ int main() {
         }
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-            for(auto & entitie : entities) {
-                if(CheckCollisionRecs(mouseColl, entitie->hitBox)) {
-                    selected->target = entitie;
-                    for(auto & i : selected->attackable) {
-                        if(i == entitie) {
-                            cout << "FOUND" << endl;
-                            break;
-                        }
-                    }
-                    break;
-                } else {
-                    mouseLocation = GetMousePosition();
-                    mouseLocation.x -= selected->hitBox.width / 2;
-                    mouseLocation.y -= selected->hitBox.height / 2;
-                    goToLocation = &mouseLocation;
-                    selected->target = nullptr;
-                }
-            } cout << endl;
-        }
+                mouseLocation = GetMousePosition();
+                mouseLocation.x -= selected->hitBox.width / 2;
+                mouseLocation.y -= selected->hitBox.height / 2;
+                goToLocation = &mouseLocation;
+                selected->target = nullptr;
+            }
 
 
         /// ENTITY LOOP

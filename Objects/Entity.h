@@ -27,7 +27,6 @@ public:
     [[nodiscard]] bool checkLocation();
     void updateLocation();
     void drawSelf(Color color) const;
-    void defaultAttack();
 };
 
 #endif //HEROSV_S_MONSTERSRECREATE_ENTITY_H

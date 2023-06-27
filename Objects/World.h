@@ -8,21 +8,7 @@
 
 class World {
 public:
-    Vector2 *selectedLocation;
-    Vector2 *goToLocation;
-    Vector2 mouseLocation;
-    Entity *selected;
-    Entity party[4];
-    vector <Entity> entities;
 
-    World() {
-        selectedLocation = &boxOne.boxLocation;
-        goToLocation = &boxOne.goToLocation;
-        selected = &boxOne;
-    }
-    void partyInputCheck() {
-
-    }
 };
 
 
