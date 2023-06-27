@@ -108,11 +108,14 @@ int main() {
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             for(auto & entitie : entities) {
-                if(CheckCollisionCircleRec({selected->hitBox.x + 25, selected->hitBox.y + 25}, selected->range, entitie->hitBox)) {
-                    cout << selected->name << " can attack " << entitie->name << "." << endl;
-                }
                 if(CheckCollisionRecs(mouseColl, entitie->hitBox)) {
                     selected->target = entitie;
+                    for(auto & i : selected->attackable) {
+                        if(i == entitie) {
+                            cout << "FOUND" << endl;
+                            break;
+                        }
+                    }
                     break;
                 } else {
                     mouseLocation = GetMousePosition();
@@ -124,14 +127,22 @@ int main() {
             } cout << endl;
         }
 
-        boxOne.locationCheck();
-        boxTwo.locationCheck();
-        boxThree.locationCheck();
-        boxFour.locationCheck();
-        badGuy.locationCheck();
+
+        /// ENTITY LOOP
+        for(auto & entitie : entities) {
+            entitie->attackable.clear();
+            entitie->locationCheck();
+            if (CheckCollisionCircleRec({selected->hitBox.x + 25, selected->hitBox.y + 25}, selected->range,
+                                        entitie->hitBox)) {
+                selected->attackable.push_back(entitie);
+            }
+        }
+        /// ENTITY CHECK LOOP
+
 
         BeginDrawing(); //Start the Drawing
         ClearBackground(BLACK);
+        // Add loop for drawing
             boxOne.drawSelf(BLUE);
             boxTwo.drawSelf(BLACK);
             boxThree.drawSelf(GREEN);

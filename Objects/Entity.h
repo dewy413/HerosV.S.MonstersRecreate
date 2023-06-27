@@ -18,6 +18,7 @@ public:
     int attack = 5;
     int range = 200;
     Entity *target = nullptr;
+    vector <Entity *> attackable;
 
     explicit Entity(Vector2 location);
 
