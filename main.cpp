@@ -8,12 +8,15 @@ using namespace std;
 
 int main() {
 
+    /// WINDOW SETUP OPTIONS
     const int screenWidth = 800;
     const int screenHeight = 450;
 
     InitWindow(screenWidth, screenHeight, "HVM");
 
     SetTargetFPS(60);
+    /// WINDOW SETUP OPTIONS
+
 
 
 
