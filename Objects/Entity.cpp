@@ -6,10 +6,6 @@
 using namespace std;
 
 
-Entity::Entity() {
-
-}
-
 Entity::Entity(Vector2 location) {
     boxLocation = location;
     goToLocation = boxLocation;
@@ -20,25 +16,25 @@ Entity::Entity(Vector2 location) {
 }
 
 void Entity::locationCheck() {
-    hitBox.x = boxLocation.x;
-    hitBox.y = boxLocation.y;
-    if(!checkLocation()) {
+    hitBox.x = boxLocation.x; //Update location so it is live
+    hitBox.y = boxLocation.y; // ^^^
+    if (!checkLocation()) {
         updateLocation();
     }
 }
 
 bool Entity::checkLocation() {
 
-    if(target != nullptr) {
-        goToLocation.x = target->hitBox.x;
-        goToLocation.y = target->hitBox.y;
+    if (target != nullptr) {
+        goToLocation.x = target->hitBox.x; //Makes move location to the target
+        goToLocation.y = target->hitBox.y; // ^^^
     }
 
-    if(boxLocation.x != goToLocation.x) {
+    if (boxLocation.x != goToLocation.x) {
         return false;
     }
 
-    if(boxLocation.y != goToLocation.y) {
+    if (boxLocation.y != goToLocation.y) {
         return false;
     }
 
@@ -49,18 +45,45 @@ bool Entity::checkLocation() {
 void Entity::updateLocation() {
 
 
+    if (target != nullptr) {
 
+        /// ATTACKABLE
+        if (CheckCollisionCircleRec(boxLocation, range, target->hitBox)) {
 
-    if(boxLocation.x > int(goToLocation.x)) {
-        if(abs(boxLocation.x - goToLocation.x) > speed) {
-            boxLocation.x -= speed;
+            goToLocation.x = boxLocation.x;
+            goToLocation.y = boxLocation.y;
+            return;
+        }
+        /// ATTACKABLE
+
+        /// MOVE TO ATTACKABLE
+        if (boxLocation.x > target->hitBox.x) {
+            goToLocation.x = target->hitBox.x;
+        } else {
+            goToLocation.x = target->hitBox.x;
+        }
+        if (boxLocation.y > target->hitBox.y) {
+            goToLocation.y = target->hitBox.y;
+        } else {
+            goToLocation.y = target->hitBox.y;
+
+        }
+        /// MOVE TO ATTACKABLE
+
+    }
+
+    /// DEFAULT MOVE LOCATION
+
+    if (boxLocation.x > int(goToLocation.x)) {
+        if (abs(boxLocation.x - goToLocation.x) > speed) {
+            boxLocation.x -= speed; // Used for exact movement, not just
         } else {
             boxLocation.x -= abs(boxLocation.x - goToLocation.x);
 
         }
     }
-    if(boxLocation.x < int(goToLocation.x)) {
-        if(abs(boxLocation.x - goToLocation.x) > speed) {
+    if (boxLocation.x < int(goToLocation.x)) {
+        if (abs(boxLocation.x - goToLocation.x) > speed) {
             boxLocation.x += speed;
 
         } else {
@@ -68,8 +91,8 @@ void Entity::updateLocation() {
 
         }
     }
-    if(boxLocation.y > int(goToLocation.y)) {
-        if(abs(boxLocation.y - goToLocation.y) > speed) {
+    if (boxLocation.y > int(goToLocation.y)) {
+        if (abs(boxLocation.y - goToLocation.y) > speed) {
             boxLocation.y -= speed;
 
         } else {
@@ -78,9 +101,8 @@ void Entity::updateLocation() {
         }
 
     }
-
-    if(boxLocation.y < int(goToLocation.y)) {
-        if(abs(boxLocation.y - goToLocation.y) > speed) {
+    if (boxLocation.y < int(goToLocation.y)) {
+        if (abs(boxLocation.y - goToLocation.y) > speed) {
             boxLocation.y += speed;
 
         } else {
@@ -89,15 +111,16 @@ void Entity::updateLocation() {
         }
 
     }
-
+    /// DEFAULT MOVE LOCATION
 
 }
+
 
 void Entity::drawSelf(Color color) const {
     DrawRectangleRec(hitBox, color);
     DrawRectangle(hitBox.x, hitBox.y - 12, health / 2, 8, RED);
     DrawRectangleLines(hitBox.x, hitBox.y - 12, 50, 8, BLACK);
-    DrawCircleLines(hitBox.x + 25 , hitBox.y + 25, range, YELLOW); // range
+    DrawCircleLines(hitBox.x + 25, hitBox.y + 25, range, YELLOW); // range
 }
 
 

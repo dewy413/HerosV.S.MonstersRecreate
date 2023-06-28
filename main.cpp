@@ -3,8 +3,8 @@
 #include <vector>
 #include "Objects/Entity.h"
 #include "Objects/World.h"
-using namespace std;
 
+using namespace std;
 
 
 int main() {
@@ -74,19 +74,30 @@ int main() {
 
         /// MOUSE CLICK CODE
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-                World.mouseLocation = GetMousePosition();
-                World.mouseLocation.x -= World.selected->hitBox.width / 2;
-                World.mouseLocation.y -= World.selected->hitBox.height / 2;
-                World.goToLocation = &World.mouseLocation;
-                World.selected->target = nullptr;
+            for (auto &entity: World.entities) {
+                // Target following
+                if (CheckCollisionRecs(World.mouseColl, entity->hitBox)) {
+                    World.selected->target = entity;
+                    break;
+                } else {
+                    // General location moving
+                    World.mouseLocation = GetMousePosition();
+                    World.mouseLocation.x -= World.selected->hitBox.width / 2;
+                    World.mouseLocation.y -= World.selected->hitBox.height / 2;
+                    World.goToLocation = &World.mouseLocation;
+                    World.selected->target = nullptr;
+                }
             }
+        }
+
         /// MOUSE CLICK CODE
 
         /// ENTITY LOOP
-        for(auto & entitie : World.entities) {
+        for (auto &entitie: World.entities) {
             entitie->attackable.clear();
             entitie->locationCheck();
-            if (CheckCollisionCircleRec({World.selected->hitBox.x + 25, World.selected->hitBox.y + 25}, World.selected->range,
+            if (CheckCollisionCircleRec({World.selected->hitBox.x + 25, World.selected->hitBox.y + 25},
+                                        World.selected->range,
                                         entitie->hitBox)) {
                 World.selected->attackable.push_back(entitie);
             }
@@ -99,15 +110,15 @@ int main() {
         /// DRAWING ZONE
         BeginDrawing();
         ClearBackground(BLACK);
-            for(auto & entity : World.entities) {
-                entity->drawSelf(RED);
-            }
-            DrawRectangleRec(World.mouseColl, PINK);
+        for (auto &entity: World.entities) {
+            entity->drawSelf(RED);
+        }
+        DrawRectangleRec(World.mouseColl, PINK);
 
         EndDrawing();
 
     }
-        /// DRAWING ZONE
+    /// DRAWING ZONE
 
     return 0;
 }

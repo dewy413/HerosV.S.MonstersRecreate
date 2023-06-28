@@ -18,10 +18,3 @@ World::World() {
     selected = entities[0]; // Default selected character to be the first one.
 }
 
-
-void World::createEntity() {
-    entities.push_back(new Entity);
-
-
-}
-
