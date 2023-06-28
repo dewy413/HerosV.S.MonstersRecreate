@@ -15,6 +15,7 @@ public:
     int speed = 5;
     int health = 100;
     int range = 200;
+    string name;
     Entity *target = nullptr;
     vector <Entity *> attackable;
 

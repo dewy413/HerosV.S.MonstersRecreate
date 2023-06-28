@@ -10,6 +10,7 @@ World::World() {
     /// Player Character Generation
     for (float i = 0; i < 4; i++) {
         entities.push_back(new Entity({0, 25 * i}));
+        entities[i]->name = "box" + to_string(i);
     }
 
     //It is done this way because if I have a different set starting go to location the player will not spawn in where they are supposed to be.
