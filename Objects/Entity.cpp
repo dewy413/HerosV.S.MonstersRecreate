@@ -48,10 +48,12 @@ void Entity::updateLocation() {
     if (target != nullptr) {
 
         /// ATTACKABLE
-        if (CheckCollisionCircleRec(boxLocation, range, target->hitBox)) {
+        if (CheckCollisionCircleRec({boxLocation.x + 25, boxLocation.y + 25}, range, target->hitBox)) {
 
             goToLocation.x = boxLocation.x;
             goToLocation.y = boxLocation.y;
+
+            target->health -= 5;
             return;
         }
         /// ATTACKABLE

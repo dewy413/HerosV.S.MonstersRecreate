@@ -14,7 +14,6 @@ public:
     Rectangle mouseColl {NULL, NULL, 5, 5};
     vector <Entity *> entities;
     Entity *selected;
-    void createEntity();
 };
 
 

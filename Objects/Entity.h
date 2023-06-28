@@ -12,12 +12,12 @@ public:
     Vector2 boxLocation;
     Vector2 goToLocation;
     Rectangle hitBox;
-    int speed = 5;
     int health = 100;
-    int range = 200;
+    int speed = 5;
+    int attack = 5;
+    int range = 25;
     string name;
     Entity *target = nullptr;
-    vector <Entity *> attackable;
 
     explicit Entity(Vector2 location);
     void locationCheck();

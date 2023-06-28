@@ -25,6 +25,7 @@ int main() {
     /// GENERATE WORLD
 
 
+
     /// VARIABLE UPDATE ZONE
     while (!WindowShouldClose()) {
 
@@ -94,14 +95,8 @@ int main() {
 
         /// ENTITY LOOP
         for (auto &entitie: World.entities) {
-            entitie->attackable.clear();
             entitie->locationCheck();
-            if (CheckCollisionCircleRec({World.selected->hitBox.x + 25, World.selected->hitBox.y + 25},
-                                        World.selected->range,
-                                        entitie->hitBox)) {
-                World.selected->attackable.push_back(entitie);
             }
-        }
         /// ENTITY CHECK LOOP
 
         /// VARIABLE UPDATE ZONE
