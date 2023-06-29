@@ -26,9 +26,15 @@ void Entity::locationCheck() {
 
 bool Entity::checkLocation() {
 
+
+
     if (target != nullptr) {
         goToLocation.x = target->hitBox.x; //Makes move location to the target
         goToLocation.y = target->hitBox.y; // ^^^
+    }
+
+    if (attacked) {
+        target = shooter;
     }
 
     if (boxLocation.x != goToLocation.x) {
@@ -48,27 +54,22 @@ void Entity::updateLocation() {
     double timer = GetTime();
 
 
-
-    if (attacked) {
-        target = shooter;
-    }
-
     if (target != nullptr) {
 
         /// ATTACKABLE
         if (CheckCollisionCircleRec({boxLocation.x + 25, boxLocation.y + 25}, range, target->hitBox)) {
-            target->attacked = false;
+            target->attacked = true;
             goToLocation.x = boxLocation.x;
             goToLocation.y = boxLocation.y;
             if(abs(timer - lastAttack) > cooldown) {
                 target->health -= attack;
-                target->attacked = true;
                 target->shooter = this;
                 lastAttack = GetTime();
             }
 
             return;
         }
+
         /// ATTACKABLE
 
         /// MOVE TO ATTACKABLE
