@@ -2,8 +2,9 @@
 #define HEROSV_S_MONSTERSRECREATE_WORLD_H
 
 #include <iostream>
-#include "raylib.h"
 #include <vector>
+#include "raylib.h"
+#include "Entity.h"
 
 class World {
 public:

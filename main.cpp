@@ -96,7 +96,7 @@ int main() {
         /// ENTITY LOOP
         for (auto &entitie: World.entities) {
             entitie->locationCheck();
-            }
+        }
         /// ENTITY CHECK LOOP
 
         /// VARIABLE UPDATE ZONE

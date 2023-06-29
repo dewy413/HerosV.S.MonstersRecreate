@@ -16,7 +16,11 @@ public:
     int speed = 5;
     int attack = 5;
     int range = 25;
+    double cooldown = 1.00;
+    double lastAttack = 0;
+    bool attacked = false;
     string name;
+    Entity *shooter = nullptr;
     Entity *target = nullptr;
 
     explicit Entity(Vector2 location);
@@ -24,6 +28,7 @@ public:
     [[nodiscard]] bool checkLocation();
     void updateLocation();
     void drawSelf(Color color) const;
+
 };
 
 #endif //HEROSV_S_MONSTERSRECREATE_ENTITY_H
